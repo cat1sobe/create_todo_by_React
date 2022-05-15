@@ -1,4 +1,52 @@
-.App {
+body {
   font-family: sans-serif;
+}
+
+input {
+  border-radius: 16px;
+  border: none;
+  padding: 6px 16px;
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  padding: 6px 16px;
+}
+
+button:hover {
+  background-color: coral;
+  cursor: pointer;
+}
+
+.title {
   text-align: center;
+  margin-top: 0px;
+}
+
+.incomplete-area {
+  background-color: rgb(41, 185, 137);
+  width: 400px;
+  min-height: 100px;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.complete-area {
+  background-color: brown;
+  width: 400px;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1px;
+}
+
+.item {
+  margin-right: 8px;
 }
