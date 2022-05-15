@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 
 import { InputTodo } from "./Conponent/inputTodo";
 import { Incomplete } from "./Conponent/incomplete";
+
+//未完了タスク数に上限を設ける
+const limit = 4;
 
 export const App = () => {
   const [addTask, setAddTask] = useState("");
@@ -11,6 +14,7 @@ export const App = () => {
 
   const onchangeTodoText = (event) => setAddTask(event.target.value);
 
+  const [taskLimitFlag, setTaskLimitFlag] = useState(false);
   const onClickAddTask = () => {
     if (!(addTask === "")) {
       const addedTasks = [...inCompleteTaskItems, addTask];
@@ -18,6 +22,16 @@ export const App = () => {
       setAddTask("");
     }
   };
+
+  useEffect(() => {
+    //未完了タスク数に上限を設ける
+    if (inCompleteTaskItems.length > limit) {
+      setTaskLimitFlag(true);
+      setAddTask("");
+    } else {
+      setTaskLimitFlag(false);
+    }
+  }, [inCompleteTaskItems]);
 
   const onClickDeleteTask = (index) => {
     const deletedTasks = [...inCompleteTaskItems];
@@ -52,6 +66,7 @@ export const App = () => {
         inCompleteTaskItems={inCompleteTaskItems}
         onClickCompleteButton={onClickCompleteButton}
         onClickDeleteTask={onClickDeleteTask}
+        taskLimitFlag={taskLimitFlag}
       />
       <div className="complete-area">
         <p className="title">完了のタスク</p>
